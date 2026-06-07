@@ -188,8 +188,8 @@
             <textarea name="prompt" placeholder="Ask a medical question..." required></textarea>
             
             <div class="actions-row">
-                <!-- Кнопка очистки перенесена в строку управления для компактности -->
-                <button type="button" class="clear-btn" onclick="window.location.href='{{ url_for('clear') }}'">Clear Chat</button>
+                <!-- ID добавлен для перехвата события в JS -->
+                <button type="button" class="clear-btn" id="clearChatBtn">Clear Chat</button>
                 <button type="submit">Send Message</button>
             </div>
         </form>
@@ -200,6 +200,14 @@
         const chatBox = document.getElementById('chat-box');
         if (chatBox) {
             chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Обработка клика по кнопке очистки чата
+        const clearBtn = document.getElementById('clearChatBtn');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', function() {
+                window.location.href = "{{ url_for('clear') }}";
+            });
         }
     </script>
 </body>
